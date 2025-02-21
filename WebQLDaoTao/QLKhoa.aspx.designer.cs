@@ -33,22 +33,22 @@ namespace WebQLDaoTao
         protected global::System.Web.UI.WebControls.TextBox txtTenKH;
 
         /// <summary>
-        /// btThem control.
+        /// btnThem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btThem;
+        protected global::System.Web.UI.WebControls.Button btnThem;
 
         /// <summary>
-        /// lbThongBao control.
+        /// vsKq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbThongBao;
+        protected global::System.Web.UI.WebControls.ValidationSummary vsKq;
 
         /// <summary>
         /// gvKhoa control.
@@ -58,5 +58,14 @@ namespace WebQLDaoTao
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvKhoa;
+
+        /// <summary>
+        /// ods_Khoa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ods_Khoa;
     }
 }
