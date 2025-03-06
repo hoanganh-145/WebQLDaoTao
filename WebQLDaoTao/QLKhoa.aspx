@@ -1,13 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="QLKhoa.aspx.cs" Inherits="WebQLDaoTao.QLKhoa" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="Contents/Paging.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
-    <h5 class="alert alert-success">QUẢN LÝ KHOA</h5>
+    <h2>Quản LÝ KHOA </h2>
     <hr />
     <div>
-        <button type="button" class="btn btn-info btn-lg" style="margin-bottom: 5px;" data-toggle="modal" data-target="#modalOpenAddButton">Thêm mới</button>
+        <button type="button" class="btn btn-info btn-lg" style="margin-bottom: 5px;" data-toggle="modal" data-target="#modalOpenAddButton">Thêm</button>
         <!-- Modal -->
         <div class="modal fade" id="modalOpenAddButton" role="dialog">
             <div class="modal-dialog">
@@ -15,18 +16,18 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">THÊM MỚI KHOA</h4>
+                        <h4 class="modal-title">DANH SÁCH KHOA</h4>
                     </div>
                     <div class="modal-body">
                         <div>
                             <div class="form-group">
                                 <label>Mã khoa</label>
-                                <asp:TextBox ID="txtMaKH" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtMakh" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
 
                             <div class="form-group">
                                 <label>Tên khoa</label>
-                                <asp:TextBox ID="txtTenKH" CssClass="form-control" runat="server" ControlToValidate="txtTenmh"></asp:TextBox>
+                                <asp:TextBox ID="txtTenkh" CssClass="form-control" runat="server" ControlToValidate="txtTenmh"></asp:TextBox>
                             </div>
 
                             <div class="form-group">
@@ -42,29 +43,29 @@
             </div>
         </div>
     </div>
-    <asp:GridView ID="gvKhoa" runat="server" CssClass="table table-bordered table-hover" AutoGenerateColumns="False" DataSourceID="ods_Khoa" DataKeyNames="MaKH" CellPadding="4" ForeColor="#333333" GridLines="None">
-        <AlternatingRowStyle BackColor="White" />
-        <Columns>
-            <asp:BoundField DataField="MaKH" HeaderText="Mã Khoa" SortExpression="MaKH" ReadOnly="true" />
-            <asp:BoundField DataField="TenKH" HeaderText="Tên khoa" SortExpression="TenKH" />
-            <asp:CommandField ButtonType="Button" HeaderText="Chọn tác vụ" ShowDeleteButton="True" ShowEditButton="True" />
-        </Columns>
-        <EditRowStyle BackColor="#2461BF" />
-        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-        <RowStyle BackColor="#EFF3FB" />
-        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-        <SortedAscendingCellStyle BackColor="#F5F7FB" />
-        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-        <SortedDescendingCellStyle BackColor="#E9EBEF" />
-        <SortedDescendingHeaderStyle BackColor="#4870BE" />
-    </asp:GridView>
-
-    <asp:ObjectDataSource ID="ods_Khoa" runat="server" DataObjectTypeName="WebQLDaoTao.Models.Khoa"
-        DeleteMethod="Delete"
-        InsertMethod="Insert"
-        SelectMethod="getAll"
-        TypeName="WebQLDaoTao.Models.KhoaDAO"
-        UpdateMethod="Update" OnSelecting="ObjectDataSource1_Selecting"></asp:ObjectDataSource>
+    <div>
+        <asp:GridView CssClass="table table-bordered" ID="gvKhoa" runat="server" AutoGenerateColumns="False" DataKeyNames="MaKH"
+            OnRowEditing="gvKhoa_RowEditing" OnRowCancelingEdit="gvKhoa_RowCancelingEdit" OnRowDeleting="gvKhoa_RowDeleting"
+            OnRowUpdating="gvKhoa_RowUpdating" AllowPaging="true" PageSize="5" OnPageIndexChanging="gvKhoa_PageIndexChanging">
+            <Columns>
+                <asp:BoundField HeaderText="Mã khoa" DataField="MaKH" ReadOnly="true" />
+                <asp:BoundField HeaderText="Tên khoa" DataField="TenKH" />
+                <asp:TemplateField HeaderText="Chọn tác vụ">
+                    <ItemTemplate>
+                        <asp:Button ID="btnSua" runat="server" Text="Sửa" CommandName="Edit" CssClass="btn btn-primary" />
+                        <asp:LinkButton ID="btnXoa" OnClientClick="return confirm('Bạn có chắc chắn muốn xóa môn học này ra khỏi danh sách?')"
+                            runat="server" CommandName="Delete" CssClass="btn btn-danger">
+                            <i class="bi bi-trash"></i>Xóa
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:Button ID="btnUpdate" runat="server" Text="Cập nhật" CssClass="btn btn-success" CommandName="Update" />
+                        <asp:Button ID="btnCancel" runat="server" Text="Hủy" CssClass="btn btn-warning" CommandName="Cancel" />
+                    </EditItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+            <HeaderStyle BackColor="#0066cc" ForeColor="#ffffff" />
+            <PagerStyle HorizontalAlign="Center" CssClass="pager-style" />
+        </asp:GridView>
+    </div>
 </asp:Content>
