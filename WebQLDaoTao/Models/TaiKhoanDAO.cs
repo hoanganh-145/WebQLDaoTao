@@ -3,31 +3,80 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 
 namespace WebQLDaoTao.Models
 {
     public class TaiKhoanDAO
     {
-        SqlCommand cmd;
-        public SqlConnection Connect()
+        public TaiKhoan KiemTra(string tenDN, string matKhau)
         {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["QLDaoTao_ConStr"].ConnectionString);
-            return conn;
-        }
-        //hàm kiểm tra tra tồn tại
-        public bool checkLogin(string username, string password)
-        {
-            bool kq = false;
-            var conn = Connect();
+            TaiKhoan tk = null;
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["WebQLDaoTao_ConStr"].ConnectionString);
             conn.Open();
-            cmd = new SqlCommand("select* from taikhoan where tendangnhap = @tendangnhap and matkhau = @matkhau", conn);
-            cmd.Parameters.AddWithValue("@tendangnhap", username);
-            cmd.Parameters.AddWithValue("@matkhau", password);
-            SqlDataReader rd = cmd.ExecuteReader();
-            if (rd.Read())
-                kq = true; //success
+            SqlCommand cmd = new SqlCommand("SELECT * FROM TaiKhoan WHERE TenDN = @TenDN AND MatKhau = @MatKhau", conn);
+            cmd.Parameters.AddWithValue("@TenDN", tenDN);
+            cmd.Parameters.AddWithValue("@MatKhau", matKhau);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                tk = new TaiKhoan
+                {
+                    TenDN = dr["TenDN"].ToString(),
+                    MatKhau = dr["MatKhau"].ToString(),
+                    ChucVu = dr["ChucVu"].ToString()
+                };
+            }
+            dr.Close();
+            return tk;
+        }
+        public TaiKhoan FindById(string tenDN)
+        {
+            TaiKhoan tk = null;
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["WebQLDaoTao_ConStr"].ConnectionString);
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM TaiKhoan WHERE TenDN = @TenDN", conn);
+            cmd.Parameters.AddWithValue("@TenDN", tenDN);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                tk = new TaiKhoan
+                {
+                    TenDN = dr["TenDN"].ToString(),
+                    MatKhau = dr["MatKhau"].ToString(),
+                    ChucVu = dr["ChucVu"].ToString()
+                };
+            }
+            dr.Close();
+            conn.Close();
+
+            return tk;
+        }
+        public TaiKhoan FindByUserName(string username)
+        {
+            TaiKhoan kq = null;
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["WebQLDaoTao_ConStr"].ConnectionString);
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM TaiKhoan WHERE TenDN = @TenDN", conn);
+            cmd.Parameters.AddWithValue("@TenDN", username);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                kq = new TaiKhoan
+                {
+                    TenDN = dr["TenDN"].ToString(),
+                    MatKhau = dr["MatKhau"].ToString(),
+                    ChucVu = dr["ChucVu"].ToString()
+                };
+            }
             return kq;
         }
+
+
     }
 }

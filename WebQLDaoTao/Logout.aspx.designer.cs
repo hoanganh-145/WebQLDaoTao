@@ -10,7 +10,7 @@
 
 namespace WebQLDaoTao
 {
-    public partial class DangXuat
+    public partial class Logout
     {
 
         /// <summary>
