@@ -56,4 +56,4 @@ namespace WebQLDaoTao
             gv_SinhVien.DataBind();
         }
     }
-}
+}   

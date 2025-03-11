@@ -82,6 +82,7 @@ namespace WebQLDaoTao
         {
             try
             {
+                // Check if we should use txtMaKH or txtMakh based on the designer file
                 string makh = txtMakh.Text;
                 string tenkh = txtTenkh.Text;
 

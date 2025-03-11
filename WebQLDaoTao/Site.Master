@@ -1,4 +1,4 @@
-﻿﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WebQLDaoTao.Site" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WebQLDaoTao.Site" %>
 
 <!DOCTYPE html>
 
@@ -58,7 +58,7 @@
                             <asp:Label ID="lbTen" runat="server" Text=""></asp:Label>
                         </li>
                         <li id="liDangXuat" runat="server" visible="false">
-                            <a href="Logout.aspx">
+                            <a href="DangXuat.aspx">
                                 <span class="glyphicon glyphicon-log-out"></span>Đăng xuất</a>
                         </li>
                     </ul>
@@ -83,7 +83,7 @@
             </div>
         </div>
         <footer class="container-fluid text-center">
-            <p>Sinh viên thực hiện: 2321160087-Nguyễn Huỳnh Hoàng Anh</p>
+            <p>Sinh viên thực hiện: 2321160087-Nguyễn Huỳnh Hoàng Anh </p>
         </footer>
     </form>
 </body>

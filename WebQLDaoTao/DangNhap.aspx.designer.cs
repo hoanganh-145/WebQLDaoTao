@@ -11,7 +11,7 @@ namespace WebQLDaoTao
 {
 
 
-    public partial class Login
+    public partial class DangNhap
     {
 
         /// <summary>

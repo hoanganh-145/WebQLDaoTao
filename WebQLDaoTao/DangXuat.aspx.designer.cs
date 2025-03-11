@@ -7,11 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+
 namespace WebQLDaoTao
 {
-
-
-    public partial class LogOut
+    public partial class DangXuat
     {
 
         /// <summary>

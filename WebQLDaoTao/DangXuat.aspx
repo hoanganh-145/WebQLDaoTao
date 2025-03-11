@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LogOut.aspx.cs" Inherits="WebQLDaoTao.LogOut" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DangXuat.aspx.cs" Inherits="WebQLDaoTao.DangXuat" %>
 
 <!DOCTYPE html>
 
